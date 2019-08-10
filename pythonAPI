@@ -1,0 +1,9 @@
+#API practice using Requests module in python
+import requests
+r = requests.get('http://api.open-notify.org/astros.json')
+print (r.json())
+for p in r.json()['people']:
+	print (p['name'] + "\t" + p['craft'])
+
+r = requests.get('https://api.spacexdata.com/v3/launches?filter=flight_number,launch_date_local,rocket_name')
+print (r.json())
