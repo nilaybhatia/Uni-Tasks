@@ -5,5 +5,5 @@ print (r.json())
 for p in r.json()['people']:
 	print (p['name'] + "\t" + p['craft'])
 
-r = requests.get('https://api.spacexdata.com/v3/launches?filter=flight_number,launch_date_local,rocket_name')
+r = requests.get('https://api.spacexdata.com/v3/launches?filter=flight_number,launch_date_local,rocket_name,land_success')
 print (r.json())
