@@ -9,3 +9,10 @@ queries = {'filter': 'flight_number,launch_date_utc,rocket/rocket_name,links/mis
 r = requests.get('https://api.spacexdata.com/v3/launches/', params = queries)
 print(r.url)
 print(r.json())
+copy = r.json()
+for data in copy:
+	print(data['launch_date_utc'])
+	data['launch_date_utc'] = data['launch_date_utc'] + "ABC"
+print(copy)
+	
+	
