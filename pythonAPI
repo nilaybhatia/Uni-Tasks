@@ -1,5 +1,5 @@
 #API practice using Requests module in python
-import requests
+import requests, datetime
 r = requests.get('http://api.open-notify.org/astros.json')
 print (r.json())
 for p in r.json()['people']:
@@ -12,7 +12,8 @@ print(r.json())
 copy = r.json()
 for data in copy:
 	print(data['launch_date_utc'])
-	data['launch_date_utc'] = data['launch_date_utc'] + "ABC"
+	launch_date_pretty = datetime.datetime.strptime('2017-10-09T12:37:00.000Z', "%Y-%m-%dT%H:%M:%S.%fZ").date()
+	data['launch_date_utc'] = launch_date_pretty.strftime('%d %b, %Y')
 print(copy)
 	
 	
