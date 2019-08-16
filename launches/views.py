@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+#from django.http import HttpResponse
 import requests, datetime
 # Create your views here
 def returnResponse(request):
@@ -17,10 +17,11 @@ def returnResponse(request):
 		#strftime formats a tuple representing a date/time to a string
 		
 		#Now we've to remove the nesting present in rocket and links keys
-		data['rocket-name'] = data['rocket']['rocket_name']
+		data['rocket_name'] = data['rocket']['rocket_name']
 		del data['rocket']
 		data['mission_patch'] = data['links']['mission_patch']
 		del data['links']
 
-	return HttpResponse(copy)
-
+	#return HttpResponse(copy)
+	print(len(copy))
+	return render(request, 'launches/launches_list.html', {'data' : copy})

@@ -1,0 +1,22 @@
+<html>
+	<head>
+	<title>Welcome to SpaceX website</title>
+	<table>
+		<tr>
+			<th scope = "col">Flight number</th>
+			<th scope = "col">Launch date</th>
+			<th scope = "col">Rocket name</th>
+			<th scope = "col">Mission patch link</th>
+		</tr>
+
+		{% for launch in data %}
+			<tr>	
+				<td>{{launch.flight_number}}</td>
+				<td style="padding:0 50px 0 50px;"> {{launch.launch_date_utc}}</td>
+				<td>{{launch.rocket_name}}</td>
+				<td><a href = {{launch.mission_patch}} target="_blank">{{launch.mission_patch}}</td>
+			</tr>
+		{% endfor %}
+	</table>
+	</head>
+</html>
