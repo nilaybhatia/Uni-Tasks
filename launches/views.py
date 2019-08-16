@@ -1,5 +1,6 @@
 from django.shortcuts import render
-#from django.http import HttpResponse
+from django.http import HttpResponse
+from django.template.loader import render_to_string
 import requests, datetime
 # Create your views here
 def returnResponse(request):
@@ -21,7 +22,7 @@ def returnResponse(request):
 		del data['rocket']
 		data['mission_patch'] = data['links']['mission_patch']
 		del data['links']
-
-	#return HttpResponse(copy)
-	print(len(copy))
-	return render(request, 'launches/launches_list.html', {'data' : copy})
+	rendered = render_to_string('launches/launches_list.html', {'data': copy})
+	return HttpResponse(rendered)
+	#Or we can simply use the render function. But the task explicitly mentions HttpResponse object 
+	#return render(request, 'launches/launches_list.html', {'data' : copy})
