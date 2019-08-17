@@ -38,5 +38,13 @@
 			</tr>
 		{% endfor %}
 	</table>
+
+	<div class = "sidebar">
+		<h4>Check out some interesting questions about spacex on <a href="https://space.stackexchange.com/">Space Exploration</a> Stack Exchange Site(updated live)</h4>
+		{% for item in questions %}
+			<a href = "{{item.link}}">{{ item.title|linebreaksbr }}</a>
+			<br>
+		{% endfor %}
+	</div>
 	</head>
 </html>
