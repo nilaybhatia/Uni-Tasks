@@ -15,5 +15,3 @@ for data in copy:
 	launch_date_pretty = datetime.datetime.strptime('2017-10-09T12:37:00.000Z', "%Y-%m-%dT%H:%M:%S.%fZ").date()
 	data['launch_date_utc'] = launch_date_pretty.strftime('%d %b, %Y')
 print(copy)
-	
-	

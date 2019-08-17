@@ -6,7 +6,7 @@ import requests, datetime
 # Create your views here
 def returnResponse(request):
 	queries = {'filter': 'flight_number,launch_date_utc,rocket/rocket_name,links/mission_patch'}
-	#flight_number, launch_date_utc, rocket_name, mission_patch
+	#Queries:- flight_number, launch_date_utc, rocket_name, mission_patch
 
 	response = requests.get('https://api.spacexdata.com/v3/launches', params = queries)
 	copy = response.json()
@@ -17,8 +17,9 @@ def returnResponse(request):
 			launch_date = launch_date_pretty, 
 			rocket_name = data['rocket']['rocket_name'], 
 			mission_patch_link = data['links']['mission_patch'] if (data['links']['mission_patch'] is not None) else 'https://spaceflightnow.com/launch-schedule/')
+			#for missions which are yet to launch, no link is availaible so we redirect to launch-schedule instead
 
-	launch_data =  	LaunchData.objects.all()
+	launch_data =  	LaunchData.objects.all() #our queryset object
 	rendered = render_to_string('launches/launches_list.html', {'data': launch_data})
 	return HttpResponse(rendered)
 	#Or we can simply use the render function. But the task explicitly mentions HttpResponse object 
