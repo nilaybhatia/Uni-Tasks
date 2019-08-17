@@ -8,7 +8,7 @@ INPUT:
 input_string = "010, 1111, 1010, 10010, 100000, 10100, 110"
 ```
 OUTPUT:
-![Task 1 output](https://www.github.com/nilaybhatia/Uni-Tasks/images/task_1_output.png)
+![Task 1 output](/images/task_1_output.png)
 
 
 
