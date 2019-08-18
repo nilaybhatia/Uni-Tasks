@@ -31,10 +31,24 @@ OUTPUT:
 
 ---
 ### Task 4:
-Had to first store the fetched data in models and then access the data usig QuertSet object.
+Had to first store the fetched data in models and then access the data usig QuerySet object.
 
 OUTPUT:
 Same as previous.
+
+### Additional feature added:
+It is highly likely that the user will be interested in questions related to the SpaceX company. Hence I've used the StackExchange API to fetch recent questions with [```spacex```](https://space.stackexchange.com/questions/tagged/spacex) tag.
+![Recent question on SpaceX](/images/spacex_questions.png)
+
+---
+
+## Instructions to run the project locally
+1. git clone https://www.github.com/nilaybhatia/Forum.git
+2. cd Forum/
+3. Activate your virtual environment (help [here](https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/26/python-virtual-env/))
+4. pip install -r requirements.txt (Assuming pip is installed)
+5. python manage.py runserver
+
 
 
 
