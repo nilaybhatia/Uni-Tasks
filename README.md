@@ -37,11 +37,16 @@ OUTPUT:
 Same as previous.
 
 ### Additional feature added:
-It is highly likely that the user will be interested in questions related to the SpaceX company. Hence I've used the StackExchange API to fetch recent questions with [```spacex```](https://space.stackexchange.com/questions/tagged/spacex) tag.
+* Recent questions on SpaceX fetched from Space Exploration Stack Exchange
+ 
+ >It is highly likely that the user will be interested in questions related to the SpaceX company. Hence I've used the StackExchange API to fetch recent questions with [```spacex```](https://space.stackexchange.com/questions/tagged/spacex) tag.
+
 ![Recent question on SpaceX](/images/spacex_questions.PNG)
 
 ---
 
+* Efficient API call
+> I am calling the API with all the 4 queries only if new data has been added on the website providing the API. Else, I am displaying data from our database. This way, the website calls the API only when it is loaded for the 1st time. The next time reload button is pressed, we fetch data directly from our local database, leading to fast and optimised experience. 
 ## Instructions to run the project locally
 1. `git clone https://www.github.com/nilaybhatia/Forum.git`
 2. `cd Forum/`
