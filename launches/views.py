@@ -19,7 +19,7 @@ def returnResponse(request):
 			mission_patch_link = data['links']['mission_patch'] if (data['links']['mission_patch'] is not None) else 'https://spaceflightnow.com/launch-schedule/')
 			#for missions which are yet to launch, no link is availaible so we redirect to launch-schedule instead
 	#Now we're also printing some recent questions about spaceX asked on space.stackexchange.com
-	response = requests.get('https://api.stackexchange.com/2.2/questions?order=desc&sort=creation&tagged=python&site=stackoverflow')
+	response = requests.get('https://api.stackexchange.com/2.2/questions?order=desc&sort=creation&tagged=spacex&site=space')
 	questions = []
 	for data in response.json()['items']:
 		data_dic = {}
