@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import LaunchData
 from django.template.loader import render_to_string
+from django.utils import timezone
 import requests, datetime
 # Create your views here
 def returnResponse(request):
@@ -47,7 +48,9 @@ def returnResponse(request):
 
 	#Now we send data from our database to the template
 	launch_data = LaunchData.objects.all() #our queryset object
-	rendered = render_to_string('launches/launches_list.html', {'data': launch_data, 'questions': questions})
+	launch_count = LaunchData.objects.filter(launch_date__lte = timezone.now()).count()
+	# if one is nit-picky, this is not entirely correct since launch location and timezones will come into play
+	rendered = render_to_string('launches/launches_list.html', {'data': launch_data, 'questions': questions, 'launch_count' : launch_count, 'scheduled_count' : launch_data.count()-launch_count})
 	return HttpResponse(rendered)
 	#Or we can simply use the render function. But the task explicitly mentions HttpResponse object 
 	#return render(request, 'launches/launches_list.html', {'data' : copy})
