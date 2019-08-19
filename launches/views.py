@@ -10,6 +10,9 @@ def returnResponse(request):
 	
 	response = requests.get('https://api.spacexdata.com/v3/launches', params = queries)
 	copy = response.json()
+	#if some data is already present in the database then delete it to load new data
+	if LaunchData.objects.all().count()>0:
+		LaunchData.objects.all().delete()
 	for data in copy:
 		launch_date_pretty = datetime.datetime.strptime(data['launch_date_utc'], "%Y-%m-%dT%H:%M:%S.%fZ").date()
 		LaunchData.objects.create(
