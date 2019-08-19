@@ -27,7 +27,7 @@ We had to use an HTML page as a template in this task. I've dispalyed the data i
 
 OUTPUT:
 
-![Task 3 output](/images/task_3_output.png)
+![Task 3 output](/images/task_3_output.PNG)
 
 ---
 ### Task 4:
@@ -38,7 +38,7 @@ Same as previous.
 
 ### Additional feature added:
 It is highly likely that the user will be interested in questions related to the SpaceX company. Hence I've used the StackExchange API to fetch recent questions with [```spacex```](https://space.stackexchange.com/questions/tagged/spacex) tag.
-![Recent question on SpaceX](/images/spacex_questions.png)
+![Recent question on SpaceX](/images/spacex_questions.PNG)
 
 ---
 
