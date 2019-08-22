@@ -56,7 +56,7 @@ Same as previous.
 ---
 
 * Automatic virtual environment setup and running the server using bash scripting
-> There is no need to type in long series of commands in order to run the project. I have created a bash script which will do everything from installing the required dependencies till running the server on localhost. Instructions below.
+> There is no need to type in long series of commands in order to run the project. I have created a bash script which will do everything from installing the required dependencies till running the server on localhost. Instructions [below](/README.md#or-using-bash-script).
 ## Instructions to run the project locally
 1. `git clone https://www.github.com/nilaybhatia/Forum.git`
 2. `cd Forum/`
@@ -64,9 +64,15 @@ Same as previous.
 4. `pip install -r requirements.txt` (Assuming pip is installed)
 5. `python manage.py runserver`
 #### OR, using bash script:
-After step 2 in the above, you can directly run the script `run.sh` **after** you've given executable permission: `chmod +x run.sh`.
+After step 2 in the above, you can directly run the script `run.sh` **after** you've given executable permission: 
+```
+cd bin/
+chmod +x run.sh
+run.sh
 
-For setting the PATH: 
+```
+
+For setting the PATH, if needed: 
 
 ```export PATH=$PATH:$(pwd)/bin```
 
