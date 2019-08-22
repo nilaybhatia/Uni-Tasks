@@ -8,7 +8,10 @@ import requests, datetime
 def returnResponse(request):
 	
 	#This is intended as a major performance improvement. If the SpaceX API adds more launches in the future, only then we re-fetch the data from the API
-	#Else we just display data from out database.
+	#Else we just display data from our database.
+	file = open('last_flight_number.txt', 'r')
+	last_flight_number = int(file.read())
+	file.close()
 
 	#First we just request for flight numbers
 	flight_numbers_only = requests.get('https://api.spacexdata.com/v3/launches/?filter=flight_number')
@@ -16,7 +19,7 @@ def returnResponse(request):
 	list_of_flight_numbers = [dic['flight_number'] for dic in flight_numbers_json] # list comprehension created from dictionaries
 	#Now if the maximum flight number returned is greater than the one stored in our database, re-fetch
 	max_flight_number = max(list_of_flight_numbers)
-	if max_flight_number > LaunchData.last_flight_number:
+	if max_flight_number > last_flight_number:
 		
 		#delete data from database to load new data
 		LaunchData.objects.all().delete()
@@ -24,17 +27,23 @@ def returnResponse(request):
 		#Queries:- flight_number, launch_date_utc, rocket_name, mission_patch
 		
 		response = requests.get('https://api.spacexdata.com/v3/launches', params = queries)
+		#print(response.url)
 		copy = response.json()
 		
 		for data in copy:
 			launch_date_pretty = datetime.datetime.strptime(data['launch_date_utc'], "%Y-%m-%dT%H:%M:%S.%fZ").date()
+			launch_time_pretty = datetime.datetime.strptime(data['launch_date_utc'], "%Y-%m-%dT%H:%M:%S.%fZ").time()
 			LaunchData.objects.create(
 				flight_number = data['flight_number'], 
 				launch_date = launch_date_pretty, 
 				rocket_name = data['rocket']['rocket_name'], 
-				mission_patch_link = data['links']['mission_patch'] if (data['links']['mission_patch'] is not None) else 'https://spaceflightnow.com/launch-schedule/')
+				mission_patch_link = data['links']['mission_patch'] if (data['links']['mission_patch'] is not None) else 'https://spaceflightnow.com/launch-schedule/',
+				launch_time = launch_time_pretty 
+				)
 				#for missions which are yet to launch, no link is availaible so we redirect to launch-schedule instead
-		LaunchData.last_flight_number = max_flight_number
+		file = open('last_flight_number.txt', 'w')
+		file.write(str(max_flight_number))
+		file.close() 
 
 
 

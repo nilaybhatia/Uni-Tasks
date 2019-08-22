@@ -51,7 +51,7 @@ Same as previous.
 ---
 
 * Live updation of launches taken place and launches scheduled
-> If a launch takes place today, the number of launches taken place and launches scheduled line at the top of the page will get changed automatically to reflect this. (The former will increase by 1 and the latter will reduce by 1.)
+> If a launch takes place **right now**, the number of launches taken place and launches scheduled line at the top of the page will get changed automatically to reflect this. (The former will increase by 1 and the latter will reduce by 1. Assuming the API providing the data updates it immediately)
 
 ---
 

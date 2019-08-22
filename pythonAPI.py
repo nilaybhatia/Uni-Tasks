@@ -12,13 +12,23 @@ list_of_flight_numbers = [dic['flight_number'] for dic in flight_numbers_json] #
 max_flight_number = max(list_of_flight_numbers)
 print(max_flight_number)
 
-#queries = {'filter': 'flight_number,launch_date_utc,rocket/rocket_name,links/mission_patch'}
-#r = requests.get('https://api.spacexdata.com/v3/launches/', params = queries)
-# print(r.url)
-# print(r.json())
-# copy = r.json()
-# for data in copy:
-# 	#print(data['launch_date_utc'])
-# 	launch_date_pretty = datetime.datetime.strptime('2017-10-09T12:37:00.000Z', "%Y-%m-%dT%H:%M:%S.%fZ").date()
-# 	data['launch_date_utc'] = launch_date_pretty.strftime('%d %b, %Y')
-# print(copy)
+queries = {'filter': 'flight_number,launch_date_utc,rocket/rocket_name,links/mission_patch'}
+r = requests.get('https://api.spacexdata.com/v3/launches/', params = queries)
+print(r.url)
+print(r.json())
+copy = r.json()
+for data in copy:
+	#print(data['launch_date_utc'])
+	launch_date_pretty = datetime.datetime.strptime('2017-10-09T12:37:00.000Z', "%Y-%m-%dT%H:%M:%S.%fZ").date()
+	launch_time = datetime.datetime.strptime('2017-10-09T12:37:00.000Z', "%Y-%m-%dT%H:%M:%S.%fZ").time()
+	print (launch_time)
+	data['launch_date_utc'] = launch_date_pretty.strftime('%d %b, %Y')
+print(copy)
+
+file = open('last_flight_number.txt', 'r')
+last_flight_number = int(file.read())
+file.close()
+
+file = open('last_flight_number.txt', 'w')
+file.write(str(103))
+file.close()
