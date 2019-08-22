@@ -18,13 +18,14 @@ def returnResponse(request):
 	max_flight_number = max(list_of_flight_numbers)
 	if max_flight_number > LaunchData.last_flight_number:
 		
+		#delete data from database to load new data
 		LaunchData.objects.all().delete()
 		queries = {'filter': 'flight_number,launch_date_utc,rocket/rocket_name,links/mission_patch'}
 		#Queries:- flight_number, launch_date_utc, rocket_name, mission_patch
 		
 		response = requests.get('https://api.spacexdata.com/v3/launches', params = queries)
 		copy = response.json()
-		#if some data is already present in the database then delete it to load new data
+		
 		for data in copy:
 			launch_date_pretty = datetime.datetime.strptime(data['launch_date_utc'], "%Y-%m-%dT%H:%M:%S.%fZ").date()
 			LaunchData.objects.create(
