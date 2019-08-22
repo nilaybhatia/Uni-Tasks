@@ -72,7 +72,7 @@ chmod +x run.sh
 For setting the PATH, ~~if~~ is needed: 
 
 ```
-export PATH=$PATH:$(pwd)/bin
+export PATH=$PATH:$(pwd)/
 run.sh
 
 ```
