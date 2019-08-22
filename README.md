@@ -68,13 +68,16 @@ After step 2 in the above, you can directly run the script `run.sh` **after** yo
 ```
 cd bin/
 chmod +x run.sh
+```
+For setting the PATH, ~~if~~ is needed: 
+
+```
+export PATH=$PATH:$(pwd)/bin
 run.sh
 
 ```
 
-For setting the PATH, if needed: 
 
-```export PATH=$PATH:$(pwd)/bin```
 
 
 
